@@ -1,9 +1,7 @@
 # Author: Justin Wang
-# example output: /mnt/datashare/IRCdata/CFP_Dep/Vectors/CB_vectors_afni_v2/stim_times1
-# note: tab delimited
 
 # running the script: python stimTimeExtract_JW.py {inputFileName} {OPTIONAL: outputDirectoryName}
-# @inputFileName: .edat file that contains MRI output data.
+# @inputFileName: e-merged .txt file that contains MRI output data.
 # @outputDirectoryName: where you want the output files to be created. If not provided, the output directory will be created inside the directory that runs the script.
 
 import os
@@ -48,7 +46,7 @@ print("inputFileName: " + inputFileName)
 print("outputDirPath: " + outputDirPath)
 
 
-columnNames = [] # found in the first row of .edat file
+columnNames = [] # found in the first row of file
 data = [] # nested array of all data starting from the second row
 
 # returns rows in which the entry in column {col} changes.
@@ -99,9 +97,6 @@ for Subject in Subjects:
 
 	try:
 		print ("getting data for Subj "+SubjID)
-		#if (SubjID == "02069"):
-		#	SubjID = "03069"
-		# outputted at outputDirPath
 
 		popFile = open(outputDirPath+"/"+SubjID+"_pop.1D",'w')
 		unpFile = open(outputDirPath+"/"+SubjID+"_unp.1D",'w')
@@ -186,6 +181,5 @@ for Subject in Subjects:
 			rptFile.close()
 	except ValueError:	# throw exception if integer casting fails.
 		print("Failure casting value" + " (SubjID: " + SubjID + ")")
-
 
 print("Number of subjects is: " + str(count))
